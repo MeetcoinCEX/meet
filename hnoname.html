@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>live Coin Price</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+    .logo {display:flex;width:100%}
+    .logo p {width:33.33%;font-size:15px;font-weight:bold;font-family:serif;}
+    .logo img {width:30px; height:30px;border:2px solid green;border-radius:100%;}
+    
+    </style>
+</head>
+<body>
+
+     
+  <div class="logo">    <p><img src="coin/btc.png"></p>     <p>Bitcoin (BTC)</p>           <p>$<span id="bitcoin"></span></p>      </div>
+  <div class="logo">    <p><img src="coin/usdt.png"></p>     <p>Tether USD (USDT)</p>      <p>$<span id="tether"></span></p>     </div>
+  <div class="logo">    <p><img src="coin/eth.png"></p>     <p>Ethereum (ETH)</p>          <p>$<span id="ethereum"></span></p>     </div>
+  <div class="logo">    <p><img src="coin/bnb.png"></p>    <p>Binance Coin (BNB)</p>       <p>$<span id="binancecoin"></span></p>     </div>
+  <div class="logo">    <p><img src="coin/xrp.png"></p>     <p>Ripple (XRP)</p>            <p>$<span id="ripple"></span></p>       </div>
+  <div class="logo">    <p><img src="coin/ada.png"></p>     <p>Cardano (ADA)</p>           <p>$<span id="cardano"></span></p>      </div>
+  <div class="logo">    <p><img src="coin/sol.png"></p>     <p>Solana (SOL)</p>            <p>$<span id="solana"></span></p>         </div>
+  <div class="logo">    <p><img src="coin/busd.png"></p>    <p>Dogecoin (Doge)</p>      <p>$<span id="dogecoin"></span></p>     </div>
+  <div class="logo">    <p><img src="coin/busd.png"></p>    <p>Dogecoin (Doge)</p>      <p>$<span id="bitcoin-cash-sv"></span></p>     </div>
+  
+                
+   
+    <script>var btc = document.getElementById("bitcoin");
+    var usdt = document.getElementById("tether");
+    var eth = document.getElementById("ethereum");
+    var bnb = document.getElementById("binancecoin");
+    var xrp = document.getElementById("ripple");
+    var ada = document.getElementById("cardano");
+    var sol = document.getElementById("solana");
+    var doge = document.getElementById("dogecoin");
+    var bsv = document.getElementById("bitcoin-cash-sv");
+    
+    
+    
+    var liveprice = {
+    "async": true,
+    "scroosDomain": true,
+    "url": "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin%2Ctether%2Cethereum%2Cbinancecoin%2Cripple%2Ccardano%2Csolana%2Cdogecoin%2Cbitcoin-cash-sv&vs_currencies=usd",
+    
+    "method": "GET",
+    "headers": {}
+    }
+    
+    $.ajax(liveprice).done(function (response){
+    btc.innerHTML = response.bitcoin.usd;
+    usdt.innerHTML = response.tether.usd;
+    eth.innerHTML = response.ethereum.usd;
+    bnb.innerHTML = response.binancecoin.usd;
+    xrp.innerHTML = response.ripple.usd;
+    ada.innerHTML = response.cardano.usd;
+    sol.innerHTML = response.solana.usd;
+    doge.innerHTML = response.dogecoin.usd;
+    bsv.innerHTML = response.bitcoin-cash-sv.usd;
+    
+    });</script>
+</body>
+</html>
